@@ -19,6 +19,7 @@
     <Compile Include="Generated\Models\BasicDependency.cs" />
     <Compile Include="Generated\Models\Dependency.cs" />
     <Compile Include="Generated\Models\ParametersLink.cs" />
+    <Compile Include="Generated\Models\Plan.cs" />
     <Compile Include="Generated\Models\Subscription.cs" />
     <Compile Include="SubscriptionClient.Customization.cs" />
     <Compile Include="Generated\DeploymentOperationOperations.cs" />

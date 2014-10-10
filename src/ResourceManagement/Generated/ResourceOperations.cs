@@ -347,9 +347,9 @@ namespace Microsoft.Azure.Management.Resources
                 }
                 
                 JObject tagsDictionary = new JObject();
-                if (parameters.Tags != null)
+                if (parameters.TagsValue != null)
                 {
-                    foreach (KeyValuePair<string, string> pair in parameters.Tags)
+                    foreach (KeyValuePair<string, string> pair in parameters.TagsValue)
                     {
                         string tagsKey = pair.Key;
                         string tagsValue = pair.Value;
@@ -357,6 +357,32 @@ namespace Microsoft.Azure.Management.Resources
                     }
                 }
                 basicResourceValue["tags"] = tagsDictionary;
+                
+                if (parameters.Plan != null)
+                {
+                    JObject planValue = new JObject();
+                    basicResourceValue["plan"] = planValue;
+                    
+                    if (parameters.Plan.Name != null)
+                    {
+                        planValue["name"] = parameters.Plan.Name;
+                    }
+                    
+                    if (parameters.Plan.Publisher != null)
+                    {
+                        planValue["publisher"] = parameters.Plan.Publisher;
+                    }
+                    
+                    if (parameters.Plan.Product != null)
+                    {
+                        planValue["product"] = parameters.Plan.Product;
+                    }
+                    
+                    if (parameters.Plan.PromotionCode != null)
+                    {
+                        planValue["promotionCode"] = parameters.Plan.PromotionCode;
+                    }
+                }
                 
                 if (parameters.ProvisioningState != null)
                 {
@@ -459,11 +485,47 @@ namespace Microsoft.Azure.Management.Resources
                         JToken tagsSequenceElement = ((JToken)responseDoc["tags"]);
                         if (tagsSequenceElement != null && tagsSequenceElement.Type != JTokenType.Null)
                         {
+                            resourceInstance.Tags = new Dictionary<string, string>();
                             foreach (JProperty property in tagsSequenceElement)
                             {
                                 string tagsKey2 = ((string)property.Name);
                                 string tagsValue2 = ((string)property.Value);
                                 resourceInstance.Tags.Add(tagsKey2, tagsValue2);
+                            }
+                        }
+                        
+                        JToken planValue2 = responseDoc["plan"];
+                        if (planValue2 != null && planValue2.Type != JTokenType.Null)
+                        {
+                            Plan planInstance = new Plan();
+                            resourceInstance.Plan = planInstance;
+                            
+                            JToken nameValue2 = planValue2["name"];
+                            if (nameValue2 != null && nameValue2.Type != JTokenType.Null)
+                            {
+                                string nameInstance2 = ((string)nameValue2);
+                                planInstance.Name = nameInstance2;
+                            }
+                            
+                            JToken publisherValue = planValue2["publisher"];
+                            if (publisherValue != null && publisherValue.Type != JTokenType.Null)
+                            {
+                                string publisherInstance = ((string)publisherValue);
+                                planInstance.Publisher = publisherInstance;
+                            }
+                            
+                            JToken productValue = planValue2["product"];
+                            if (productValue != null && productValue.Type != JTokenType.Null)
+                            {
+                                string productInstance = ((string)productValue);
+                                planInstance.Product = productInstance;
+                            }
+                            
+                            JToken promotionCodeValue = planValue2["promotionCode"];
+                            if (promotionCodeValue != null && promotionCodeValue.Type != JTokenType.Null)
+                            {
+                                string promotionCodeInstance = ((string)promotionCodeValue);
+                                planInstance.PromotionCode = promotionCodeInstance;
                             }
                         }
                         
@@ -843,11 +905,47 @@ namespace Microsoft.Azure.Management.Resources
                         JToken tagsSequenceElement = ((JToken)responseDoc["tags"]);
                         if (tagsSequenceElement != null && tagsSequenceElement.Type != JTokenType.Null)
                         {
+                            resourceInstance.Tags = new Dictionary<string, string>();
                             foreach (JProperty property in tagsSequenceElement)
                             {
                                 string tagsKey = ((string)property.Name);
                                 string tagsValue = ((string)property.Value);
                                 resourceInstance.Tags.Add(tagsKey, tagsValue);
+                            }
+                        }
+                        
+                        JToken planValue = responseDoc["plan"];
+                        if (planValue != null && planValue.Type != JTokenType.Null)
+                        {
+                            Plan planInstance = new Plan();
+                            resourceInstance.Plan = planInstance;
+                            
+                            JToken nameValue2 = planValue["name"];
+                            if (nameValue2 != null && nameValue2.Type != JTokenType.Null)
+                            {
+                                string nameInstance2 = ((string)nameValue2);
+                                planInstance.Name = nameInstance2;
+                            }
+                            
+                            JToken publisherValue = planValue["publisher"];
+                            if (publisherValue != null && publisherValue.Type != JTokenType.Null)
+                            {
+                                string publisherInstance = ((string)publisherValue);
+                                planInstance.Publisher = publisherInstance;
+                            }
+                            
+                            JToken productValue = planValue["product"];
+                            if (productValue != null && productValue.Type != JTokenType.Null)
+                            {
+                                string productInstance = ((string)productValue);
+                                planInstance.Product = productInstance;
+                            }
+                            
+                            JToken promotionCodeValue = planValue["promotionCode"];
+                            if (promotionCodeValue != null && promotionCodeValue.Type != JTokenType.Null)
+                            {
+                                string promotionCodeInstance = ((string)promotionCodeValue);
+                                planInstance.PromotionCode = promotionCodeInstance;
                             }
                         }
                         
@@ -1030,6 +1128,7 @@ namespace Microsoft.Azure.Management.Resources
                         JToken valueArray = responseDoc["value"];
                         if (valueArray != null && valueArray.Type != JTokenType.Null)
                         {
+                            result.Resources = new List<Resource>();
                             foreach (JToken valueValue in ((JArray)valueArray))
                             {
                                 Resource resourceJsonFormatInstance = new Resource();
@@ -1084,11 +1183,47 @@ namespace Microsoft.Azure.Management.Resources
                                 JToken tagsSequenceElement = ((JToken)valueValue["tags"]);
                                 if (tagsSequenceElement != null && tagsSequenceElement.Type != JTokenType.Null)
                                 {
+                                    resourceJsonFormatInstance.Tags = new Dictionary<string, string>();
                                     foreach (JProperty property in tagsSequenceElement)
                                     {
                                         string tagsKey = ((string)property.Name);
                                         string tagsValue = ((string)property.Value);
                                         resourceJsonFormatInstance.Tags.Add(tagsKey, tagsValue);
+                                    }
+                                }
+                                
+                                JToken planValue = valueValue["plan"];
+                                if (planValue != null && planValue.Type != JTokenType.Null)
+                                {
+                                    Plan planInstance = new Plan();
+                                    resourceJsonFormatInstance.Plan = planInstance;
+                                    
+                                    JToken nameValue2 = planValue["name"];
+                                    if (nameValue2 != null && nameValue2.Type != JTokenType.Null)
+                                    {
+                                        string nameInstance2 = ((string)nameValue2);
+                                        planInstance.Name = nameInstance2;
+                                    }
+                                    
+                                    JToken publisherValue = planValue["publisher"];
+                                    if (publisherValue != null && publisherValue.Type != JTokenType.Null)
+                                    {
+                                        string publisherInstance = ((string)publisherValue);
+                                        planInstance.Publisher = publisherInstance;
+                                    }
+                                    
+                                    JToken productValue = planValue["product"];
+                                    if (productValue != null && productValue.Type != JTokenType.Null)
+                                    {
+                                        string productInstance = ((string)productValue);
+                                        planInstance.Product = productInstance;
+                                    }
+                                    
+                                    JToken promotionCodeValue = planValue["promotionCode"];
+                                    if (promotionCodeValue != null && promotionCodeValue.Type != JTokenType.Null)
+                                    {
+                                        string promotionCodeInstance = ((string)promotionCodeValue);
+                                        planInstance.PromotionCode = promotionCodeInstance;
                                     }
                                 }
                                 
@@ -1230,6 +1365,7 @@ namespace Microsoft.Azure.Management.Resources
                         JToken valueArray = responseDoc["value"];
                         if (valueArray != null && valueArray.Type != JTokenType.Null)
                         {
+                            result.Resources = new List<Resource>();
                             foreach (JToken valueValue in ((JArray)valueArray))
                             {
                                 Resource resourceJsonFormatInstance = new Resource();
@@ -1284,11 +1420,47 @@ namespace Microsoft.Azure.Management.Resources
                                 JToken tagsSequenceElement = ((JToken)valueValue["tags"]);
                                 if (tagsSequenceElement != null && tagsSequenceElement.Type != JTokenType.Null)
                                 {
+                                    resourceJsonFormatInstance.Tags = new Dictionary<string, string>();
                                     foreach (JProperty property in tagsSequenceElement)
                                     {
                                         string tagsKey = ((string)property.Name);
                                         string tagsValue = ((string)property.Value);
                                         resourceJsonFormatInstance.Tags.Add(tagsKey, tagsValue);
+                                    }
+                                }
+                                
+                                JToken planValue = valueValue["plan"];
+                                if (planValue != null && planValue.Type != JTokenType.Null)
+                                {
+                                    Plan planInstance = new Plan();
+                                    resourceJsonFormatInstance.Plan = planInstance;
+                                    
+                                    JToken nameValue2 = planValue["name"];
+                                    if (nameValue2 != null && nameValue2.Type != JTokenType.Null)
+                                    {
+                                        string nameInstance2 = ((string)nameValue2);
+                                        planInstance.Name = nameInstance2;
+                                    }
+                                    
+                                    JToken publisherValue = planValue["publisher"];
+                                    if (publisherValue != null && publisherValue.Type != JTokenType.Null)
+                                    {
+                                        string publisherInstance = ((string)publisherValue);
+                                        planInstance.Publisher = publisherInstance;
+                                    }
+                                    
+                                    JToken productValue = planValue["product"];
+                                    if (productValue != null && productValue.Type != JTokenType.Null)
+                                    {
+                                        string productInstance = ((string)productValue);
+                                        planInstance.Product = productInstance;
+                                    }
+                                    
+                                    JToken promotionCodeValue = planValue["promotionCode"];
+                                    if (promotionCodeValue != null && promotionCodeValue.Type != JTokenType.Null)
+                                    {
+                                        string promotionCodeInstance = ((string)promotionCodeValue);
+                                        planInstance.PromotionCode = promotionCodeInstance;
                                     }
                                 }
                                 

@@ -20,48 +20,63 @@
 // code is regenerated.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Azure.Management.Resources.Models;
 
 namespace Microsoft.Azure.Management.Resources.Models
 {
     /// <summary>
-    /// Deployment dependency information.
+    /// Plan for the resource.
     /// </summary>
-    public partial class Dependency : BasicDependency
+    public partial class Plan
     {
-        private IList<BasicDependency> _dependsOn;
+        private string _name;
         
         /// <summary>
-        /// Optional. Gets the list of dependencies.
+        /// Optional. Gets or sets the plan ID.
         /// </summary>
-        public IList<BasicDependency> DependsOn
+        public string Name
         {
-            get
-            {
-                if (this._dependsOn == null)
-                {
-                    this._dependsOn = new System.Collections.Generic.List<Microsoft.Azure.Management.Resources.Models.BasicDependency>();
-                }
-                return this._dependsOn;
-            }
-            set { this._dependsOn = value; }
+            get { return this._name; }
+            set { this._name = value; }
+        }
+        
+        private string _product;
+        
+        /// <summary>
+        /// Optional. Gets or sets the offer ID.
+        /// </summary>
+        public string Product
+        {
+            get { return this._product; }
+            set { this._product = value; }
+        }
+        
+        private string _promotionCode;
+        
+        /// <summary>
+        /// Optional. Gets or sets the promotion code.
+        /// </summary>
+        public string PromotionCode
+        {
+            get { return this._promotionCode; }
+            set { this._promotionCode = value; }
+        }
+        
+        private string _publisher;
+        
+        /// <summary>
+        /// Optional. Gets or sets the publisher ID.
+        /// </summary>
+        public string Publisher
+        {
+            get { return this._publisher; }
+            set { this._publisher = value; }
         }
         
         /// <summary>
-        /// Optional. Gets the list of dependencies.
+        /// Initializes a new instance of the Plan class.
         /// </summary>
-        public IList<BasicDependency> DependsOnValue
-        {
-            get { return this._dependsOn; }
-            set { this._dependsOn = value; }
-        }
-        
-        /// <summary>
-        /// Initializes a new instance of the Dependency class.
-        /// </summary>
-        public Dependency()
+        public Plan()
         {
         }
     }
