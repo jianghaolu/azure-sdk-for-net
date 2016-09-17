@@ -37,6 +37,16 @@ var mappings = {
         'source': 'arm-network/2016-06-01/swagger/network.json',
         'package': 'Microsoft.Azure.Management.Network',
         'args': '-FT 1'
+    },
+    'graphrbac': {
+        'dir': 'Graph.RBAC/Microsoft.Azure.Management.V2.Graph.RBAC',
+        'source': 'arm-graphrbac/1.6/swagger/graphrbac.json',
+        'package': 'Microsoft.Azure.Management.Graph.RBAC',
+    },
+    'keyvault': {
+        'dir': 'KeyVault/Microsoft.Azure.Management.V2.KeyVault',
+        'source': 'arm-keyvault/2015-06-01/swagger/keyvault.json',
+        'package': 'Microsoft.Azure.Management.KeyVault',
     }
 };
 
