@@ -97,7 +97,7 @@ namespace ManageWebAppSqlConnection
                             .WithNewAppServicePlan(planName)
                             .WithRegion(Region.US_WEST)
                             .WithPricingTier(AppServicePricingTier.Standard_S1)
-                            .WithPhpVersion(PhpVersion.Php5_6)
+                            .WithPhpVersion(PhpVersion.Php5_5)
                             .DefineSourceControl()
                                 .WithPublicGitRepository("https://github.com/ProjectNami/projectnami")
                                 .WithBranch("master")
